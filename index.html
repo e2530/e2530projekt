@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>e2530 PROJEKTE</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; background-color: #0047FF; color: white; overflow-x: hidden; min-height: 100vh; }
+.container { display: flex; flex-direction: column; min-height: 100vh; padding: 20px 30px; }
+/* Header */
+header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+.logo-text { font-size: 20px; font-weight: 400; letter-spacing: 0.5px; }
+.header-right { display: flex; align-items: center; gap: 15px; }
+.year { font-size: 20px; }
+
+/* Main Content - Homepage */
+main { flex: 1; display: flex; align-items: center; padding: 0; min-height: 0; }
+.projects { width: 100%; }
+.project-item { display: flex; align-items: center; gap: 15px; margin-bottom: 6px; cursor: pointer; background: none; border: none; padding: 0; text-align: left; width: 100%; transition: all 0.2s ease; }
+.project-title { font-size: 48px; font-weight: 600; letter-spacing: -1px; color: white; line-height: 1; transition: transform 0.2s ease; transform-origin: left center; }
+.project-image { width: 48px; height: 48px; background: rgba(255, 255, 255, 0.1); border-radius: 0px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.2s ease; overflow: hidden; }
+.project-image img { width: 100%; height: 100%; object-fit: cover; }
+.project-item:hover .project-title, .project-item:hover .project-image { transform: scale(1.1); }
+/* Footer */
+footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 15px; flex-shrink: 0; }
+.footer-email { font-size: 16px; }
+.footer-links { text-align: right; font-size: 16px; }
+.footer-links div { margin-bottom: 5px; font-style: italic; cursor: pointer; }
+.footer-links a { color: inherit; text-decoration: none; }
+/* Subpage Styles */
+.subpage { display: none; }
+.subpage.active { display: flex; }
+.back-button { background: none; border: none; color: white; font-size: 18px; cursor: pointer; transition: opacity 0.2s; padding: 0; }
+.back-button:hover { opacity: 0.8; }
+.homepage { display: flex; }
+.homepage.hidden { display: none; }
+/* Subpage Content Layout */
+.subpage main { display: block; padding-top: 40px; }
+.subpage-content { width: 100%; max-width: 1200px; }
+/* Video Container - 1/3 kleiner, 16:9, linksbündig */
+.video-container { width: 66%; max-width: 66%; background: #000; margin-bottom: 40px; position: relative; padding-bottom: 37.125%; height: 0; overflow: hidden; margin-left: 0; }
+.video-container iframe, .video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+/* Project Info Section */
+.project-info { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 80px; }
+.project-name { font-size: 72px; font-weight: 700; line-height: 1; letter-spacing: -2px; }
+.project-subtitle { font-size: 28px; font-weight: 400; margin-top: 8px; letter-spacing: 0.5px; }
+.project-credits { text-align: right; font-size: 18px; line-height: 1.6; }
+.project-credits div { margin-bottom: 4px; }
+/* Gallery Styles */
+.gallery-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 20px; }
+.gallery-grid img { width: 100%; aspect-ratio: 2/3; object-fit: cover; ; }
+/* Responsive */
+@media (max-width: 768px) {
+  .project-title { font-size: 32px; }
+  .project-name { font-size: 48px; }
+  .project-subtitle { font-size: 20px; }
+  .project-info { flex-direction: column; gap: 30px; }
+  .project-credits { text-align: left; }
+  .video-container { width: 100%; max-width: 100%; padding-bottom: 56.25%; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Homepage -->
+<div class="homepage container" id="homepage">
+<header>
+  <div class="logo-text">e2530 PROJEKTE</div>
+  <div class="header-right">
+    <span class="year">2025</span>
+  </div>
+</header>
+<main>
+  <div class="projects">
+    <button class="project-item" onclick="showPage('andrej')">
+      <h2 class="project-title">ANDREJ</h2>
+      <div class="project-image"><img src="Andrej/andrej1.JPG" alt="Andrej"></div>
+    </button>
+    <button class="project-item" onclick="showPage('yungpalo')">
+      <h2 class="project-title">YUNGPALO</h2>
+      <div class="project-image"><img src="Yungpalo/yungpalo1.jpg" alt="Yungpalo"></div>
+    </button>
+    <button class="project-item" onclick="showPage('2late')">
+      <h2 class="project-title">2LATE</h2>
+      <div class="project-image"><img src="2late/2late1.JPG" alt="2Late"></div>
+    </button>
+    <button class="project-item" onclick="showPage('eba')">
+      <h2 class="project-title">EBÄ</h2>
+      <div class="project-image"><img src="ebä/ebä1.png" alt="Ebä"></div>
+    </button>
+    <button class="project-item" onclick="showPage('e2530')">
+      <h2 class="project-title">E2530 (25)</h2>
+      <div class="project-image"><img src="e253025/e25301.png" alt="E2530"></div>
+    </button>
+    <button class="project-item" onclick="showPage('piatto')">
+      <h2 class="project-title">PIATTO</h2>
+      <div class="project-image"><img src="Piatto/piatto1.JPG" alt="Piatto"></div>
+    </button>
+    <button class="project-item" onclick="showPage('gola')">
+      <h2 class="project-title">GOLA GIANNI</h2>
+      <div class="project-image"><img src="GOLA/gola1.JPG" alt="Gola Gianni"></div>
+    </button>
+    <button class="project-item" onclick="showPage('siempre')">
+      <h2 class="project-title">$IEMPRE</h2>
+      <div class="project-image"><img src="$iempre/siempre1.JPG" alt="$IEMPRE"></div>
+    </button>
+    <button class="project-item" onclick="showPage('youth')">
+      <h2 class="project-title">YOUTH CULTURE</h2>
+      <div class="project-image"><img src="youthculture/youthculture1.JPG" alt="Youth Culture"></div>
+    </button>
+    <button class="project-item" onclick="showPage('zhc')">
+      <h2 class="project-title">ZHC CITY</h2>
+      <div class="project-image"><img src="ZHC/zhc1.png" alt="ZHC City"></div>
+    </button>
+  </div>
+</main>
+<footer>
+    <div class="footer-email">e2530videos@gmx.ch</div>
+    <div class="footer-links">
+      <div onclick="showPage('gallery')">Bildgalerie</div>
+      <div><a href="https://www.instagram.com/e2530_/" target="_blank">Instagram</a></div>
+    </div>
+  </footer>
+</div>
+
+<!-- Subpages -->
+<!-- ANDREJ -->
+<div class="subpage container" id="andrej">
+<header>
+  <button class="back-button" onclick="showPage('home')">← e2530 PROJEKTE</button>
+  <div class="header-right"><span class="year">2025</span></div>
+</header>
+<main>
+  <div class="subpage-content">
+    <div class="video-container">
+      <iframe src="https://player.vimeo.com/video/YOUR_VIDEO_ID" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="project-info">
+      <div><div class="project-name">ANDREJ</div><div class="project-subtitle">PROJECT SUBTITLE</div></div>
+      <div class="project-credits">
+        <div>CAMERA:E2530</div>
+        <div>STILLS PHOTOGRAPHER:YOUTHMEDIA</div>
+        <div>EDIT:E2530</div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+    <div class="footer-email">e2530videos@gmx.ch</div>
+    <div class="footer-links">
+      <div onclick="showPage('gallery')">Bildgalerie</div>
+      <div><a href="https://www.instagram.com/e2530_/" target="_blank">Instagram</a></div>
+    </div>
+</footer>
+</div>
+
+<!-- YUNGPALO -->
+<div class="subpage container" id="yungpalo">
+  <header>
+    <button class="back-button" onclick="showPage('home')">← e2530 PROJEKTE</button>
+    <div class="header-right"><span class="year">2025</span></div>
+  </header>
+  <main>
+    <div class="subpage-content">
+      <div class="video-container">
+        <div style="padding:56.25% 0 0 0;position:relative;">
+          <iframe src="https://player.vimeo.com/video/1140013824?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+                  frameborder="0" 
+                  allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                  referrerpolicy="strict-origin-when-cross-origin" 
+                  style="position:absolute;top:0;left:0;width:100%;height:100%;" 
+                  title="YUNGPALO SEXTAPE TOUR 2025">
+          </iframe>
+        </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+      </div>
+      <div class="project-info">
+        <div>
+          <div class="project-name">YUNGPALO</div>
+          <div class="project-subtitle">SEXTAPE TOUR - KONZERTVIDEO, 2025</div>
+        </div>
+        <div class="project-credits">
+          <div>CAMERA:E2530</div>
+          <div>STILLS PHOTOGRAPHER:YOUTHMEDIA, E2530</div>
+          <div>EDIT:E2530</div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+      <div class="footer-email">e2530videos@gmx.ch</div>
+      <div class="footer-links">
+        <div onclick="showPage('gallery')">Bildgalerie</div>
+        <div><a href="https://www.instagram.com/e2530_/" target="_blank">Instagram</a></div>
+      </div>
+  </footer>
+  </div>
+  
+
+<!-- 2LATE -->
+<div class="subpage container" id="2late">
+<header>
+  <button class="back-button" onclick="showPage('home')">← e2530 PROJEKTE</button>
+  <div class="header-right"><span class="year">2025</span></div>
+</header>
+<main>
+  <div class="subpage-content">
+    <div class="video-container">
+      <iframe src="2late/GEDANKE.mp4" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="project-info">
+      <div><div class="project-name">2LATE</div><div class="project-subtitle">GEDANKE - MUSIKVIDEO, 2025</div></div>
+      <div class="project-credits">
+        <div>CAMERA:E2530</div>
+        <div>STILLS PHOTOGRAPHER:GABRIEL.BUE</div>
+        <div>EDIT:E2530</div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+    <div class="footer-email">e2530videos@gmx.ch</div>
+    <div class="footer-links">
+      <div onclick="showPage('gallery')">Bildgalerie</div>
+      <div><a href="https://www.instagram.com/e2530_/" target="_blank">Instagram</a></div>
+    </div>
+</footer>
+</div>
+
+<!-- EBÄ -->
+<div class="subpage container" id="eba">
+<header>
+  <button class="back-button" onclick="showPage('home')">← e2530 PROJEKTE</button>
+  <div class="header-right"><span class="year">2025</span></div>
+</header>
+<main>
+  <div class="subpage-content">
+    <div class="video-container">
+      <iframe src="https://player.vimeo.com/video/YOUR_VIDEO_ID" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="project-info">
+      <div><div class="project-name">EBÄ</div><div class="project-subtitle">KOLLEKTION - BILDER, 2025</div></div>
+      <div class="project-credits">
+        <div>STILLS PHOTOGRAPHER:E2530</div>
+        <div>EDIT:E2530</div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+    <div class="footer-email">e2530videos@gmx.ch</div>
+    <div class="footer-links">
+      <div onclick="showPage('gallery')">Bildgalerie</div>
+      <div><a href="https://www.instagram.com/e2530_/" target="_blank">Instagram</a></div>
+    </div>
+</footer>
+</div>
+
+<!-- E2530 -->
+<div class="subpage container" id="e2530">
+<header>
+  <button class="back-button" onclick="showPage('home')">← e2530 PROJEKTE</button>
+  <div class="header-right"><span class="year">2025</span></div>
+</header>
+<main>
+  <div class="subpage-content">
+    <div class="video-container">
+      <iframe src="e253025/253025.mp4" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="project-info">
+      <div><div class="project-name">E2530 (25)</div><div class="project-subtitle">E2530 25 Tshirt - Video, 2025</div></div>
+      <div class="project-credits">
+        <div>DOP: E2530</div>
+        <div>CAMERA:VALEGALERIE, E2530</div>
+        <div>VISUALS:DYRECGALLERY</div>
+        <div>EDIT:E2530</div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+    <div class="footer-email">e2530videos@gmx.ch</div>
+    <div class="footer-links">
+      <div onclick="showPage('gallery')">Bildgalerie</div>
+      <div><a href="https://www.instagram.com/e2530_/" target="_blank">Instagram</a></div>
+    </div>
+</footer>
+</div>
+
+<!-- PIATTO -->
+<div class="subpage container" id="piatto">
+<header>
+  <button class="back-button" onclick="showPage('home')">← e2530 PROJEKTE</button>
+  <div class="header-right"><span class="year">2025</span></div>
+</header>
+<main>
+  <div class="subpage-content">
+    <div class="video-container">
+      <iframe src="Piatto/PIATTOPOPUP.mp4" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="project-info">
+      <div><div class="project-name">PIATTO</div><div class="project-subtitle">POPUP - VIDEO, 2025</div></div>
+      <div class="project-credits">
+        <div>CAMERA:E2530</div>
+        <div>STILLS PHOTAGRAPHER:E2530</div>
+        <div>EDIT:E2530</div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+    <div class="footer-email">e2530videos@gmx.ch</div>
+    <div class="footer-links">
+      <div onclick="showPage('gallery')">Bildgalerie</div>
+      <div><a href="https://www.instagram.com/e2530_/" target="_blank">Instagram</a></div>
+    </div>
+</footer>
+</div>
+
+<!-- GOLA GIANNI -->
+<div class="subpage container" id="gola">
+<header>
+  <button class="back-button" onclick="showPage('home')">← e2530 PROJEKTE</button>
+  <div class="header-right"><span class="year">2025</span></div>
+</header>
+<main>
+  <div class="subpage-content">
+    <div class="video-container">
+      <iframe src="GOLA/GOLAGIANNI.mp4" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="project-info">
+      <div><div class="project-name">GOLA GIANNI</div><div class="project-subtitle">DOG TALK TOUR - VIDEO, 2025</div></div>
+      <div class="project-credits">
+        <div>CAMERA:E2530</div>
+        <div>STILLS PHOTOGRAPHER:E2530</div>
+        <div>EDIT:E2530</div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+    <div class="footer-email">e2530videos@gmx.ch</div>
+    <div class="footer-links">
+      <div onclick="showPage('gallery')">Bildgalerie</div>
+      <div><a href="https://www.instagram.com/e2530_/" target="_blank">Instagram</a></div>
+    </div>
+</footer>
+</div>
+
+<!-- $IEMPRE -->
+<div class="subpage container" id="siempre">
+<header>
+  <button class="back-button" onclick="showPage('home')">← e2530 PROJEKTE</button>
+  <div class="header-right"><span class="year">2025</span></div>
+</header>
+<main>
+  <div class="subpage-content">
+    <div class="video-container">
+      <iframe src="$iempre/SIEMPRE.mp4" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="project-info">
+      <div><div class="project-name">$IEMPRE</div><div class="project-subtitle">DOG TALK TOUR PREACT - BILDER, 2025</div></div>
+      <div class="project-credits">
+        <div>STILLS PHOTOGRAPHER:E2530</div>
+        <div>EDIT:E2530</div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+    <div class="footer-email">e2530videos@gmx.ch</div>
+    <div class="footer-links">
+      <div onclick="showPage('gallery')">Bildgalerie</div>
+      <div><a href="https://www.instagram.com/e2530_/" target="_blank">Instagram</a></div>
+    </div>
+</footer>
+</div>
+
+<!-- YOUTH CULTURE -->
+<div class="subpage container" id="youth">
+<header>
+  <button class="back-button" onclick="showPage('home')">← e2530 PROJEKTE</button>
+  <div class="header-right"><span class="year">2025</span></div>
+</header>
+<main>
+  <div class="subpage-content">
+    <div class="video-container">
+      <iframe src="youthculture/oriental.mp4" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="project-info">
+      <div><div class="project-name">YOUTH CULTURE</div><div class="project-subtitle">KOLLEKTION - VIDEO, 2025</div></div>
+      <div class="project-credits">
+        <div>CAMERA:E2530</div>
+        <div>EDIT:E2530</div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+    <div class="footer-email">e2530videos@gmx.ch</div>
+    <div class="footer-links">
+      <div onclick="showPage('gallery')">Bildgalerie</div>
+      <div><a href="https://www.instagram.com/e2530_/" target="_blank">Instagram</a></div>
+    </div>
+</footer>
+</div>
+
+<!-- ZHC CITY -->
+<div class="subpage container" id="zhc">
+<header>
+  <button class="back-button" onclick="showPage('home')">← e2530 PROJEKTE</button>
+  <div class="header-right"><span class="year">2025</span></div>
+</header>
+<main>
+  <div class="subpage-content">
+    <div class="video-container">
+      <iframe src="ZHC/zhcvideo.mp4" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <div class="project-info">
+      <div><div class="project-name">ZHC CITY</div><div class="project-subtitle">KOLLEKTION - BILDER, 2025</div></div>
+      <div class="project-credits">
+        <div>CAMERA:E2530</div>
+        <div>EDIT:E2530</div>
+      </div>
+    </div>
+  </div>
+</main>
+<footer>
+    <div class="footer-email">e2530videos@gmx.ch</div>
+    <div class="footer-links">
+      <div onclick="showPage('gallery')">Bildgalerie</div>
+      <div><a href="https://www.instagram.com/e2530_/" target="_blank">Instagram</a></div>
+    </div>
+</footer>
+</div>
+
+<!-- Bildgalerie Unterseite -->
+<div class="subpage container" id="gallery">
+<header>
+  <button class="back-button" onclick="showPage('home')">← e2530 PROJEKTE</button>
+  <div class="header-right"><span class="year">2025</span></div>
+</header>
+<main>
+  <div class="subpage-content">
+    <h1>BILDGALERIE</h1>
+    <div class="gallery-grid">
+      <!-- 50 Bilder als Platzhalter -->
+      <img src="Bildgalerie/michel.jpeg" alt="Bild 1">
+      <img src="Bildgalerie/maler.JPG" alt="Bild 2">
+      <img src="Bildgalerie/stickerleak.JPEG" alt="Bild 3">
+      <img src="Bildgalerie/oascal2.png" alt="Bild 4">
+      <img src="Bildgalerie/bln1.JPG" alt="Bild 5">
+      <img src="Bildgalerie/kotti1.jpg" alt="Bild 6">
+      <img src="Bildgalerie/kotti2.jpg" alt="Bild 7">
+      <img src="Bildgalerie/bln2.JPG" alt="Bild 8">
+      <img src="Yungpalo/yungpalo1.jpg" alt="Bild 9">
+      <img src="Yungpalo/yungpalo2.jpg" alt="Bild 10">
+      <img src="Yungpalo/yungpalo7.jpg" alt="Bild 11">
+      <img src="Yungpalo/yungpalo4.jpg" alt="Bild 12">
+      <img src="Yungpalo/yungpalo9.jpg" alt="Bild 13">
+      <img src="Yungpalo/yungpalo6.jpg" alt="Bild 14">
+      <img src="Yungpalo/yungpalo8.jpg" alt="Bild 15">
+      <img src="Yungpalo/yungpalo5.jpg" alt="Bild 16">
+      <img src="Bildgalerie/gabriel.JPG" alt="Bild 17">
+      <img src="Bildgalerie/dylan1.jpg" alt="Bild 18">
+      <img src="ebä/ebä1.png" alt="Bild 19">
+      <img src="ebä/DSCF0149.png" alt="Bild 20">
+      <img src="ebä/DSCF0166.jpg" alt="Bild 21">
+      <img src="2late/2late12.png" alt="Bild 22">
+      <img src="2late/2late11.png" alt="Bild 23">
+      <img src="Bildgalerie/jamie.JPG" alt="Bild 24">
+      <img src="Bildgalerie/25.jpg" alt="Bild 25">
+      <img src="Bildgalerie/tisch.JPG" alt="Bild 26">
+      <img src="Bildgalerie/pla.JPG" alt="Bild 27">
+      <img src="Bildgalerie/shirtt.png" alt="Bild 28">
+      <img src="Bildgalerie/block.JPG" alt="Bild 29">
+      <img src="Piatto/piatto1.JPG" alt="Bild 30">
+      <img src="Piatto/piatto2.JPG" alt="Bild 31">
+      <img src="Piatto/piatto3.jpg" alt="Bild 32">
+      <img src="Piatto/piatto4.jpg" alt="Bild 33">
+      <img src="Piatto/piatto5.png" alt="Bild 34">
+      <img src="Piatto/piatto6.png" alt="Bild 35">
+      <img src="Piatto/piatto7.png" alt="Bild 36">
+      <img src="Piatto/piatto8.png" alt="Bild 37">
+      <img src="Piatto/piatto9.png" alt="Bild 38">
+      <img src="Piatto/piatto10.png" alt="Bild 39">
+      <img src="Piatto/piatto11.png" alt="Bild 40">
+      <img src="e253025/6.png" alt="Bild 41">
+      <img src="e253025/5.png" alt="Bild 42">
+      <img src="e253025/3.png" alt="Bild 43">
+      <img src="e253025/9.png" alt="Bild 44">
+      <img src="Andrej/andrej1.JPG" alt="Bild 45">
+      <img src="Andrej/andrej2.JPG" alt="Bild 46">
+      <img src="youthculture/yc1.jpg" alt="Bild 47">
+      <img src="youthculture/yc2.jpg" alt="Bild 48">
+      <img src="youthculture/yc3.jpg" alt="Bild 49">
+      <img src="youthculture/yc4.jpg" alt="Bild 50">
+    </div>
+  </div>
+</main>
+<footer>
+    <div class="footer-email">e2530videos@gmx.ch</div>
+    <div class="footer-links">
+      <div><a href="https://www.instagram.com/e2530_/" target="_blank">Instagram</a></div>
+    </div>
+</footer>
+</div>
+
+<script>
+function showPage(pageId){
+  const homepage = document.getElementById('homepage');
+  const subpages = document.querySelectorAll('.subpage');
+  
+  if(pageId === 'home'){
+    homepage.style.display = 'flex';
+    subpages.forEach(sp => sp.classList.remove('active'));
+  } else {
+    homepage.style.display = 'none';
+    subpages.forEach(sp => {
+      if(sp.id === pageId){
+        sp.classList.add('active');
+      } else {
+        sp.classList.remove('active');
+      }
+    });
+  }
+}
+</script>
+
+</body>
+</html>
